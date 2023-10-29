@@ -3,6 +3,7 @@ from fastapi import FastAPI, APIRouter
 from api.endpoints import points_router
 
 app = FastAPI(
+    version="1.0",
     title="Peoples/regions API"
 )
 
