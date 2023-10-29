@@ -1,9 +1,12 @@
 from pydantic import BaseModel
 
 
-class Region(BaseModel):
-    id: int
+class RegionBase(BaseModel):
     name: str
+
+
+class RegionCreate(RegionBase):
+    pass
 
 
 class Person(BaseModel):
