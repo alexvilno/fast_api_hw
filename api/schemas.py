@@ -2,6 +2,7 @@ from pydantic import BaseModel
 
 
 class RegionBase(BaseModel):
+    id: int
     name: str
 
 
@@ -13,4 +14,8 @@ class Person(BaseModel):
     id: int
     name: str
     sex: str
-    reg_id: str
+    reg_id: int | None
+
+
+class PersonCreate(Person):
+    pass

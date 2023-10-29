@@ -6,7 +6,7 @@ import api.schemas as schemas
 from database.db import get_db
 import database.db_models as db_models
 from api import filters
-from crud import region_crud
+from crud import region_crud, person_crud
 
 points_router = APIRouter()
 
@@ -57,3 +57,17 @@ def add_region(
         return region_crud.create_region(db, region_in)
     except Exception as err:
         raise HTTPException(status_code=status.HTTP_501_NOT_IMPLEMENTED, detail=f"Error: {err}")
+
+
+@points_router.get(
+    "/persons_all",
+    response_model=list[schemas.Person],
+    summary="Информация по всем людям",
+)
+def get_persons(
+        db: Session = Depends(get_db)
+):
+    try:
+        return person_crud.get_persons(db)
+    except Exception as err:
+        raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail=f"Error: {err}")
